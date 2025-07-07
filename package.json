@@ -1,0 +1,55 @@
+{
+  "name": "design-system-import-tester",
+  "version": "1.0.0",
+  "description": "Import validation environment for @serendipetey design system packages",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "validate": "pnpm run validate:imports && pnpm run validate:types && pnpm run validate:rendering",
+    "validate:imports": "node scripts/validate-imports.js",
+    "validate:types": "tsc --noEmit",
+    "validate:rendering": "vitest run --reporter=verbose",
+    "install:published": "pnpm install --force",
+    "clean": "rimraf dist node_modules pnpm-lock.yaml"
+  },
+  "dependencies": {
+    "@serendipetey/components": "^1.0.29",
+    "@serendipetey/design-tokens": "^1.0.8",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^14.3.1",
+    "@types/node": "^22.16.0",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.6.0",
+    "@vitest/ui": "^1.0.0",
+    "autoprefixer": "^10.4.21",
+    "jsdom": "^23.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.19",
+    "vitest": "^1.6.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "5.4.19"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

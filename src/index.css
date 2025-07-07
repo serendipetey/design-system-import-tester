@@ -1,0 +1,17 @@
+@import "@serendipetey/design-tokens/dist/css/index.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-family-sans, "Poppins", system-ui, sans-serif);
+  }
+}

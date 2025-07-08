@@ -17,9 +17,14 @@ interface ComponentTestLayoutProps {
 }
 
 const mockProfileData: SidebarProfileData = {
-  name: "Design System",
-  email: "test@example.com",
-  avatar: "https://via.placeholder.com/40",
+  contact: {
+    name: "Design System Tester",
+    role: "Developer",
+  },
+  entity: {
+    name: "Design System Co",
+    id: "ds-001",
+  },
 };
 
 export function ComponentTestLayout({
@@ -29,34 +34,22 @@ export function ComponentTestLayout({
 }: ComponentTestLayoutProps) {
   const navigationConfig: NavigationConfig = {
     sections: [
-      createNavigationSection({
-        id: "components",
-        title: "Component Tests",
-        items: [
-          createNavigationItem({
-            id: "form",
-            label: "Form Components",
-            href: "/form",
-            icon: "edit",
-          }),
-          createNavigationItem({
-            id: "data",
-            label: "Data Components",
-            href: "/data",
-            icon: "table",
-          }),
-          createNavigationItem({
-            id: "navigation",
-            label: "Navigation Components",
-            href: "/navigation",
-            icon: "menu",
-          }),
-        ],
-      }),
+      createNavigationSection("components", "Component Tests", [
+        createNavigationItem("form", "Form Components", "/form"),
+        createNavigationItem("data", "Data Components", "/data"),
+        createNavigationItem(
+          "navigation",
+          "Navigation Components",
+          "/navigation"
+        ),
+      ]),
     ],
   };
 
-  const navigationState = useNavigationState(navigationConfig);
+  const navigationState = useNavigationState(
+    navigationConfig,
+    `/${currentPage}`
+  );
 
   const handleNavigation = (itemId: string) => {
     onPageChange(itemId);
@@ -69,20 +62,18 @@ export function ComponentTestLayout({
         <div className="p-4 border-b border-gray-200">
           <SidebarBusinessLogo
             logoUrl="https://via.placeholder.com/120x40"
-            companyName="Design System"
+            businessName="Design System"
           />
         </div>
 
         <div className="flex-1 overflow-y-auto p-4">
-          <SidebarMenu
-            config={navigationConfig}
-            onItemClick={handleNavigation}
-            activeItemId={currentPage}
-          />
+          <SidebarMenu>
+            <div>Menu placeholder content</div>
+          </SidebarMenu>
         </div>
 
         <div className="border-t border-gray-200 p-4">
-          <SidebarProfile data={mockProfileData} />
+          <SidebarProfile user={mockProfileData} />
         </div>
       </div>
 

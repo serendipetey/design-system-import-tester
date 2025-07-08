@@ -14,48 +14,33 @@ import {
 } from "@serendipetey/components";
 
 const mockProfileData: SidebarProfileData = {
-  name: "John Doe",
-  email: "john@example.com",
-  avatar: "https://via.placeholder.com/40",
+  contact: {
+    name: "John Doe",
+    role: "Product Manager",
+  },
+  entity: {
+    name: "Acme Corp",
+    id: "acme-001",
+  },
 };
 
 const mockNavigationConfig: NavigationConfig = {
   sections: [
-    createNavigationSection({
-      id: "main",
-      title: "Main Navigation",
-      items: [
-        createNavigationItem({
-          id: "dashboard",
-          label: "Dashboard",
-          href: "/dashboard",
-          icon: "home",
-        }),
-        createNavigationItem({
-          id: "projects",
-          label: "Projects",
-          href: "/projects",
-          icon: "folder",
-        }),
-      ],
-    }),
-    createNavigationSection({
-      id: "settings",
-      title: "Settings",
-      items: [
-        createNavigationItem({
-          id: "preferences",
-          label: "Preferences",
-          href: "/preferences",
-          icon: "settings",
-        }),
-      ],
-    }),
+    createNavigationSection("main", "Main Navigation", [
+      createNavigationItem("dashboard", "Dashboard", "/dashboard"),
+      createNavigationItem("projects", "Projects", "/projects"),
+    ]),
+    createNavigationSection("settings", "Settings", [
+      createNavigationItem("preferences", "Preferences", "/preferences"),
+    ]),
   ],
 };
 
 export function NavigationComponentsPage() {
-  const navigationState = useNavigationState(mockNavigationConfig);
+  const navigationState = useNavigationState(
+    mockNavigationConfig,
+    "/dashboard"
+  );
 
   return (
     <div className="space-y-8">
@@ -70,7 +55,7 @@ export function NavigationComponentsPage() {
         <section>
           <h3 className="text-lg font-semibold mb-3">Sidebar Toggle</h3>
           <SidebarToggle
-            isOpen={true}
+            open={true}
             onToggle={() => console.log("Toggle sidebar")}
           />
         </section>
@@ -79,69 +64,38 @@ export function NavigationComponentsPage() {
           <h3 className="text-lg font-semibold mb-3">Business Logo</h3>
           <SidebarBusinessLogo
             logoUrl="https://via.placeholder.com/120x40"
-            companyName="Design System Demo"
+            businessName="Design System Demo"
           />
         </section>
 
         <section>
           <h3 className="text-lg font-semibold mb-3">Profile Component</h3>
-          <SidebarProfile data={mockProfileData} />
+          <SidebarProfile user={mockProfileData} />
         </section>
 
         <section>
           <h3 className="text-lg font-semibold mb-3">Navigation Menu</h3>
           <div className="border rounded-lg p-4 max-w-xs">
-            <SidebarMenu config={mockNavigationConfig} />
+            <SidebarMenu>
+              <div>Menu content goes here</div>
+            </SidebarMenu>
           </div>
         </section>
 
         <section>
           <h3 className="text-lg font-semibold mb-3">Individual Menu Items</h3>
           <div className="space-y-2 max-w-xs">
-            <SidebarMenuItem
-              item={createNavigationItem({
-                id: "example1",
-                label: "Example Item 1",
-                href: "/example1",
-                icon: "star",
-              })}
-              isActive={false}
-            />
-            <SidebarMenuItem
-              item={createNavigationItem({
-                id: "example2",
-                label: "Active Item",
-                href: "/example2",
-                icon: "check",
-              })}
-              isActive={true}
-            />
+            <SidebarMenuItem active={false}>Example Item 1</SidebarMenuItem>
+            <SidebarMenuItem active={true}>Active Item</SidebarMenuItem>
           </div>
         </section>
 
         <section>
           <h3 className="text-lg font-semibold mb-3">Menu Section</h3>
           <div className="border rounded-lg p-4 max-w-xs">
-            <SidebarMenuSection
-              section={createNavigationSection({
-                id: "demo-section",
-                title: "Demo Section",
-                items: [
-                  createNavigationItem({
-                    id: "item1",
-                    label: "Item 1",
-                    href: "/item1",
-                    icon: "circle",
-                  }),
-                  createNavigationItem({
-                    id: "item2",
-                    label: "Item 2",
-                    href: "/item2",
-                    icon: "square",
-                  }),
-                ],
-              })}
-            />
+            <SidebarMenuSection title="Demo Section">
+              <div>Section content</div>
+            </SidebarMenuSection>
           </div>
         </section>
       </div>

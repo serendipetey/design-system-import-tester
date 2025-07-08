@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Input,
@@ -8,11 +8,14 @@ import {
   SelectTrigger,
   SelectValue,
   Checkbox,
-  RadioGroup,
-  RadioItem,
+  CheckboxGroup,
 } from "@serendipetey/components";
 
 export function FormComponentsPage() {
+  const [inputValue, setInputValue] = useState("");
+  const [selectValue, setSelectValue] = useState("");
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+
   return (
     <div className="space-y-8">
       <div>
@@ -22,42 +25,37 @@ export function FormComponentsPage() {
         </p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         <section>
-          <h3 className="text-lg font-semibold mb-3">Button</h3>
-          <div className="flex gap-3 flex-wrap">
-            <Button variant="primary">Primary</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="cta">Call to Action</Button>
-            <Button variant="success">Success</Button>
-            <Button variant="warning">Warning</Button>
-            <Button variant="destructive">Destructive</Button>
+          <h3 className="text-lg font-semibold mb-3">Buttons</h3>
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary">Primary Button</Button>
+            <Button variant="outline">Outline Button</Button>
+            <Button variant="ghost">Ghost Button</Button>
+            <Button variant="destructive">Destructive Button</Button>
           </div>
         </section>
 
         <section>
-          <h3 className="text-lg font-semibold mb-3">Input</h3>
+          <h3 className="text-lg font-semibold mb-3">Inputs</h3>
           <div className="space-y-4 max-w-md">
-            <Input label="Default Input" placeholder="Enter text..." />
             <Input
-              label="Required Input"
-              labelState="required"
-              placeholder="Required field"
+              label="Name"
+              placeholder="Enter your name"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
             <Input
-              label="Input with Hint"
-              hintText="This is helpful hint text"
-              placeholder="With hint"
+              label="Email"
+              placeholder="Enter your email"
+              type="email"
+              hintText="We'll never share your email"
             />
             <Input
-              label="Error State"
-              error="This field has an error"
-              placeholder="Error example"
-            />
-            <Input
-              label="Success State"
-              success="This field is valid"
-              placeholder="Success example"
+              label="Password"
+              placeholder="Enter password"
+              type="password"
+              error="Password must be at least 8 characters"
             />
           </div>
         </section>
@@ -65,9 +63,9 @@ export function FormComponentsPage() {
         <section>
           <h3 className="text-lg font-semibold mb-3">Select</h3>
           <div className="max-w-md">
-            <Select>
+            <Select value={selectValue} onValueChange={setSelectValue}>
               <SelectTrigger>
-                <SelectValue placeholder="Select an option..." />
+                <SelectValue placeholder="Select an option" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="option1">Option 1</SelectItem>
@@ -80,34 +78,29 @@ export function FormComponentsPage() {
 
         <section>
           <h3 className="text-lg font-semibold mb-3">Checkbox</h3>
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <Checkbox id="checkbox1" />
-              <label htmlFor="checkbox1">Default checkbox</label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="checkbox2" defaultChecked />
-              <label htmlFor="checkbox2">Checked checkbox</label>
-            </div>
+          <div className="space-y-4">
+            <Checkbox
+              checked={checkboxChecked}
+              onCheckedChange={setCheckboxChecked}
+              label="I agree to the terms and conditions"
+            />
+            <Checkbox
+              checked={false}
+              label="Subscribe to newsletter"
+              disabled
+            />
           </div>
         </section>
 
         <section>
-          <h3 className="text-lg font-semibold mb-3">Radio Group</h3>
-          <RadioGroup defaultValue="option1">
-            <div className="flex items-center space-x-2">
-              <RadioItem value="option1" id="radio1" />
-              <label htmlFor="radio1">Option 1</label>
+          <h3 className="text-lg font-semibold mb-3">Checkbox Group</h3>
+          <CheckboxGroup label="Select your interests">
+            <div className="space-y-2">
+              <Checkbox label="Technology" />
+              <Checkbox label="Design" />
+              <Checkbox label="Development" />
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioItem value="option2" id="radio2" />
-              <label htmlFor="radio2">Option 2</label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioItem value="option3" id="radio3" />
-              <label htmlFor="radio3">Option 3</label>
-            </div>
-          </RadioGroup>
+          </CheckboxGroup>
         </section>
       </div>
     </div>

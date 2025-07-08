@@ -1,17 +1,39 @@
+/* design-system-import-tester/src/index.css */
+
+/* Import design tokens from published package */
 @import "@serendipetey/design-tokens/dist/css/index.css";
+
+/* Import Poppins font for consistency */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Import Tailwind */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Base styles for proper rendering */
 @layer base {
   :root {
+    /* Ensure design token compatibility */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+  }
+
+  * {
+    border-color: hsl(var(--border, 214 32% 91%));
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: var(--font-family-sans, "Poppins", system-ui, sans-serif);
+    font-family: "Poppins", system-ui, sans-serif;
+  }
+}
+
+/* Ensure proper component styling */
+@layer components {
+  /* Fix any missing component styles */
+  .design-system-component {
+    font-family: "Poppins", system-ui, sans-serif;
   }
 }

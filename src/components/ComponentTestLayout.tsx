@@ -46,15 +46,20 @@ export function ComponentTestLayout({
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar Container with Design System Styling */}
+      {/* Enhanced Sidebar with new design system */}
       <div className="w-64">
-        <SidebarMenu className="rounded-lg shadow-sm">
+        <SidebarMenu size="md" className="h-full">
           {/* Logo Section */}
           <div>
             <SidebarBusinessLogo
               businessName="Design System"
               showTextWithLogo={true}
             />
+          </div>
+
+          {/* Profile Section - Move to under logo */}
+          <div className="border-b border-gray-200">
+            <SidebarProfile user={mockProfileData} position="middle" />
           </div>
 
           {/* Navigation Menu Content */}
@@ -101,11 +106,6 @@ export function ComponentTestLayout({
                 </div>
               </SidebarMenuSection>
             </SidebarMenuSectionRoot>
-          </div>
-
-          {/* Profile Section - Override border styling for bottom position */}
-          <div className="mt-auto">
-            <SidebarProfile user={mockProfileData} position="bottom" />
           </div>
         </SidebarMenu>
       </div>

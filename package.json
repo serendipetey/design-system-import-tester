@@ -18,7 +18,7 @@
     "clean": "rimraf dist node_modules pnpm-lock.yaml"
   },
   "dependencies": {
-    "@serendipetey/components": "^1.0.31",
+    "@serendipetey/components": "^1.0.32",
     "@serendipetey/design-tokens": "^1.0.8",
     "clsx": "^2.1.1",
     "lucide-react": "^0.525.0",

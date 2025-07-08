@@ -36,4 +36,22 @@
   .design-system-component {
     font-family: "Poppins", system-ui, sans-serif;
   }
+
+  /* Ensure error text color is properly applied */
+  .text-input-text-error {
+    color: var(--color-input-text-error, #eb0000) !important;
+  }
+
+  /* Ensure helper text variants work correctly */
+  .text-input-helper {
+    color: var(--color-input-helper, #374151);
+  }
+
+  .text-input-text-success {
+    color: var(--color-input-text-success, #007d85);
+  }
+
+  .text-input-text-warning {
+    color: var(--color-input-text-warning, #b75b00);
+  }
 }

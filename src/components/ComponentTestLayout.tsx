@@ -1,14 +1,22 @@
+// design-system-import-tester/src/components/ComponentTestLayout.tsx
 import React from "react";
 import {
   SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuSection,
+  SidebarMenuSectionRoot,
   SidebarProfile,
   SidebarBusinessLogo,
-  createNavigationSection,
-  createNavigationItem,
-  useNavigationState,
-  type NavigationConfig,
   type SidebarProfileData,
 } from "@serendipetey/components";
+import {
+  FileText,
+  BarChart3,
+  Users,
+  MousePointer,
+  Type,
+  CheckSquare,
+} from "lucide-react";
 
 interface ComponentTestLayoutProps {
   children: React.ReactNode;
@@ -18,12 +26,12 @@ interface ComponentTestLayoutProps {
 
 const mockProfileData: SidebarProfileData = {
   contact: {
-    name: "Design System Tester",
-    role: "Developer",
+    name: "Jane Doe",
+    role: "Administrator",
   },
   entity: {
-    name: "Design System Co",
-    id: "ds-001",
+    name: "Acme Corp",
+    id: "acme-001",
   },
 };
 
@@ -32,49 +40,77 @@ export function ComponentTestLayout({
   currentPage,
   onPageChange,
 }: ComponentTestLayoutProps) {
-  const navigationConfig: NavigationConfig = {
-    sections: [
-      createNavigationSection("components", "Component Tests", [
-        createNavigationItem("form", "Form Components", "/form"),
-        createNavigationItem("data", "Data Components", "/data"),
-        createNavigationItem(
-          "navigation",
-          "Navigation Components",
-          "/navigation"
-        ),
-      ]),
-    ],
-  };
-
-  const navigationState = useNavigationState(
-    navigationConfig,
-    `/${currentPage}`
-  );
-
-  const handleNavigation = (itemId: string) => {
-    onPageChange(itemId);
+  const handleNavigation = (page: string) => {
+    onPageChange(page);
   };
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
-        <div className="p-4 border-b border-gray-200">
-          <SidebarBusinessLogo
-            logoUrl="https://via.placeholder.com/120x40"
-            businessName="Design System"
-          />
-        </div>
+      {/* Sidebar Container with Design System Styling */}
+      <div className="w-64">
+        <SidebarMenu className="rounded-lg shadow-sm">
+          {/* Logo Section */}
+          <div>
+            <SidebarBusinessLogo
+              businessName="Design System"
+              showTextWithLogo={true}
+            />
+          </div>
 
-        <div className="flex-1 overflow-y-auto p-4">
-          <SidebarMenu>
-            <div>Menu placeholder content</div>
-          </SidebarMenu>
-        </div>
+          {/* Navigation Menu Content */}
+          <div className="flex-1 overflow-y-auto p-4">
+            {/* Component Testing Sections */}
+            <SidebarMenuSectionRoot>
+              <SidebarMenuSection title="Form Components" icon={FileText}>
+                <div className="space-y-1">
+                  <SidebarMenuItem
+                    icon={MousePointer}
+                    active={currentPage === "form"}
+                    onClick={() => handleNavigation("form")}
+                  >
+                    Buttons & Actions
+                  </SidebarMenuItem>
+                  <SidebarMenuItem icon={Type}>Input Fields</SidebarMenuItem>
+                  <SidebarMenuItem icon={CheckSquare}>
+                    Form Controls
+                  </SidebarMenuItem>
+                </div>
+              </SidebarMenuSection>
 
-        <div className="border-t border-gray-200 p-4">
-          <SidebarProfile user={mockProfileData} />
-        </div>
+              <SidebarMenuSection title="Data Components" icon={BarChart3}>
+                <div className="space-y-1">
+                  <SidebarMenuItem
+                    active={currentPage === "data"}
+                    onClick={() => handleNavigation("data")}
+                  >
+                    Tables & Lists
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>Charts & Graphs</SidebarMenuItem>
+                </div>
+              </SidebarMenuSection>
+
+              <SidebarMenuSection title="Navigation" icon={Users}>
+                <div className="space-y-1">
+                  <SidebarMenuItem
+                    active={currentPage === "navigation"}
+                    onClick={() => handleNavigation("navigation")}
+                  >
+                    Sidebar Components
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>Menu Systems</SidebarMenuItem>
+                </div>
+              </SidebarMenuSection>
+            </SidebarMenuSectionRoot>
+          </div>
+
+          {/* Profile Section - Override border styling for bottom position */}
+          <div className="mt-auto">
+            <SidebarProfile
+              user={mockProfileData}
+              className="border-t border-b-0"
+            />
+          </div>
+        </SidebarMenu>
       </div>
 
       {/* Main Content */}

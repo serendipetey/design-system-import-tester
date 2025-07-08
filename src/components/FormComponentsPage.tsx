@@ -1,3 +1,4 @@
+// design-system-import-tester/src/components/FormComponentsPage.tsx
 import React, { useState } from "react";
 import {
   Button,
@@ -55,6 +56,7 @@ export function FormComponentsPage() {
               label="Password"
               placeholder="Enter password"
               type="password"
+              hintText="Password must be at least 8 characters long"
               error="Password must be at least 8 characters"
             />
           </div>
@@ -80,15 +82,11 @@ export function FormComponentsPage() {
           <h3 className="text-lg font-semibold mb-3">Checkbox</h3>
           <div className="space-y-4">
             <Checkbox
+              label="I agree to the terms and conditions"
               checked={checkboxChecked}
               onCheckedChange={setCheckboxChecked}
-              label="I agree to the terms and conditions"
             />
-            <Checkbox
-              checked={false}
-              label="Subscribe to newsletter"
-              disabled
-            />
+            <Checkbox label="Subscribe to newsletter" defaultChecked={false} />
           </div>
         </section>
 

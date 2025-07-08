@@ -1,5 +1,5 @@
-// src/components/ImportValidator.tsx
-import { useState, useEffect } from "react";
+// design-system-import-tester/src/components/ImportValidator.tsx
+import { useState, useEffect, useCallback } from "react";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 
 interface ImportTest {
@@ -13,20 +13,20 @@ export function ImportValidator() {
   const [tests, setTests] = useState<ImportTest[]>([]);
   const [isRunning, setIsRunning] = useState(false);
 
-  const runImportTests = async () => {
+  const runImportTests = useCallback(async () => {
     setIsRunning(true);
     const testResults: ImportTest[] = [];
 
     // Test 1: Design Tokens Package Check
     try {
       testResults.push({
-        name: "Design Tokens Package Check",
+        name: "Design Tokens Package",
         status: "success",
-        message: "Design tokens CSS is imported via index.css",
+        message: "Design tokens CSS is loaded",
       });
     } catch (error) {
       testResults.push({
-        name: "Design Tokens Package Check",
+        name: "Design Tokens Package",
         status: "error",
         message: "Failed to validate design tokens",
         details: error instanceof Error ? error.message : "Unknown error",
@@ -39,7 +39,7 @@ export function ImportValidator() {
       const availableComponents = Object.keys(components);
 
       testResults.push({
-        name: "Components Package Import",
+        name: "Components Package",
         status: "success",
         message: `Successfully imported ${availableComponents.length} components`,
         details: `Available: ${availableComponents.slice(0, 5).join(", ")}${
@@ -48,7 +48,7 @@ export function ImportValidator() {
       });
     } catch (error) {
       testResults.push({
-        name: "Components Package Import",
+        name: "Components Package",
         status: "error",
         message: "Failed to import components package",
         details: error instanceof Error ? error.message : "Unknown error",
@@ -60,20 +60,20 @@ export function ImportValidator() {
       const { Button } = await import("@serendipetey/components");
       if (typeof Button === "function") {
         testResults.push({
-          name: "Button Component Import",
+          name: "Button Component",
           status: "success",
           message: "Button component imported successfully",
         });
       } else {
         testResults.push({
-          name: "Button Component Import",
+          name: "Button Component",
           status: "warning",
           message: "Button component not found in exports",
         });
       }
     } catch (error) {
       testResults.push({
-        name: "Button Component Import",
+        name: "Button Component",
         status: "error",
         message: "Failed to import Button component",
         details: error instanceof Error ? error.message : "Unknown error",
@@ -85,20 +85,20 @@ export function ImportValidator() {
       const { Input } = await import("@serendipetey/components");
       if (typeof Input === "function") {
         testResults.push({
-          name: "Input Component Import",
+          name: "Input Component",
           status: "success",
           message: "Input component imported successfully",
         });
       } else {
         testResults.push({
-          name: "Input Component Import",
+          name: "Input Component",
           status: "warning",
           message: "Input component not found in exports",
         });
       }
     } catch (error) {
       testResults.push({
-        name: "Input Component Import",
+        name: "Input Component",
         status: "error",
         message: "Failed to import Input component",
         details: error instanceof Error ? error.message : "Unknown error",
@@ -107,11 +107,11 @@ export function ImportValidator() {
 
     setTests(testResults);
     setIsRunning(false);
-  };
+  }, []);
 
   useEffect(() => {
     runImportTests();
-  }, []);
+  }, [runImportTests]);
 
   const getStatusIcon = (status: ImportTest["status"]) => {
     switch (status) {
@@ -154,6 +154,14 @@ export function ImportValidator() {
                 {test.name}
               </h3>
               <p className="text-xs text-gray-600 truncate">{test.message}</p>
+              {test.details && (
+                <p
+                  className="text-xs text-gray-500 truncate"
+                  title={test.details}
+                >
+                  {test.details}
+                </p>
+              )}
             </div>
           </div>
         ))}

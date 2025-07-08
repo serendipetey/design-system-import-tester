@@ -1,3 +1,4 @@
+// src/components/ImportValidator.tsx
 import { useState, useEffect } from "react";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 
@@ -16,9 +17,8 @@ export function ImportValidator() {
     setIsRunning(true);
     const testResults: ImportTest[] = [];
 
-    // Test 1: Design Tokens Import (skip CSS import test)
+    // Test 1: Design Tokens Package Check
     try {
-      // Just test if the design tokens package exists
       testResults.push({
         name: "Design Tokens Package Check",
         status: "success",
@@ -116,47 +116,44 @@ export function ImportValidator() {
   const getStatusIcon = (status: ImportTest["status"]) => {
     switch (status) {
       case "success":
-        return <CheckCircle className="w-5 h-5 text-green-500" />;
+        return <CheckCircle className="w-4 h-4 text-green-500" />;
       case "error":
-        return <XCircle className="w-5 h-5 text-red-500" />;
+        return <XCircle className="w-4 h-4 text-red-500" />;
       case "warning":
-        return <AlertCircle className="w-5 h-5 text-yellow-500" />;
+        return <AlertCircle className="w-4 h-4 text-yellow-500" />;
       default:
-        return <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />;
+        return <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />;
     }
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">
+    <div className="p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">
           Import Validation
         </h2>
         <button
           onClick={runImportTests}
           disabled={isRunning}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
+          className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
         >
-          {isRunning && <Loader2 className="w-4 h-4 animate-spin" />}
+          {isRunning && <Loader2 className="w-3 h-3 animate-spin" />}
           {isRunning ? "Running..." : "Re-run Tests"}
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {tests.map((test, index) => (
           <div
             key={index}
-            className="flex items-start gap-3 p-3 border rounded-lg"
+            className="flex items-center gap-2 p-3 border rounded-lg bg-gray-50"
           >
             {getStatusIcon(test.status)}
-            <div className="flex-1">
-              <h3 className="font-medium text-gray-900">{test.name}</h3>
-              <p className="text-sm text-gray-600 mt-1">{test.message}</p>
-              {test.details && (
-                <p className="text-xs text-gray-500 mt-1 font-mono bg-gray-50 p-2 rounded">
-                  {test.details}
-                </p>
-              )}
+            <div className="flex-1 min-w-0">
+              <h3 className="font-medium text-sm text-gray-900 truncate">
+                {test.name}
+              </h3>
+              <p className="text-xs text-gray-600 truncate">{test.message}</p>
             </div>
           </div>
         ))}

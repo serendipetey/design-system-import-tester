@@ -1,25 +1,54 @@
-import { ComponentValidator } from "./components/ComponentValidator";
+// src/App.tsx
+import { useState } from "react";
+import { ComponentTestLayout } from "./components/ComponentTestLayout";
 import { ImportValidator } from "./components/ImportValidator";
+import { FormComponentsPage } from "./components/FormComponentsPage";
+import { DataComponentsPage } from "./components/DataComponentsPage";
+import { NavigationComponentsPage } from "./components/NavigationComponentsPage";
 import "./index.css";
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-6xl mx-auto space-y-8">
-        <header className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Design System Import Tester
-          </h1>
-          <p className="text-gray-600">
-            Validating published packages vs workspace versions
-          </p>
-        </header>
+  const [currentPage, setCurrentPage] = useState<string>("form");
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <ImportValidator />
-          <ComponentValidator />
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case "form":
+        return <FormComponentsPage />;
+      case "data":
+        return <DataComponentsPage />;
+      case "navigation":
+        return <NavigationComponentsPage />;
+      default:
+        return <FormComponentsPage />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <ComponentTestLayout
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      >
+        <div className="space-y-8">
+          {/* Header */}
+          <header className="text-center">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Design System Import Tester
+            </h1>
+            <p className="text-gray-600">
+              Validating published packages vs workspace versions
+            </p>
+          </header>
+
+          {/* Import Validator - Keep as a standalone section */}
+          <div className="bg-white rounded-lg shadow-sm border">
+            <ImportValidator />
+          </div>
+
+          {/* Current Page Content */}
+          {renderCurrentPage()}
         </div>
-      </div>
+      </ComponentTestLayout>
     </div>
   );
 }

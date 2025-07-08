@@ -105,10 +105,7 @@ export function ComponentTestLayout({
 
           {/* Profile Section - Override border styling for bottom position */}
           <div className="mt-auto">
-            <SidebarProfile
-              user={mockProfileData}
-              className="border-t border-b-0"
-            />
+            <SidebarProfile user={mockProfileData} position="bottom" />
           </div>
         </SidebarMenu>
       </div>

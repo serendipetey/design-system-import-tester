@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@serendipetey/components':
-        specifier: ^1.0.38
-        version: 1.0.38(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.0.39
+        version: 1.0.39(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@serendipetey/design-tokens':
         specifier: ^1.0.8
         version: 1.0.8
@@ -509,8 +509,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@serendipetey/components@1.0.38':
-    resolution: {integrity: sha512-fqPt2unsT3fUo4hCBhEwDWnqQiYgBfX9SOQFzDXxPnIlfFKXNJR0g7kSTU2eSe0UlSgNflLRPXx/Ok8AbyF62g==, tarball: https://npm.pkg.github.com/download/@serendipetey/components/1.0.38/4e51de848b080672af4ad00d1868e17caefa23fd}
+  '@serendipetey/components@1.0.39':
+    resolution: {integrity: sha512-O3FbPDgSVonp4r5rKXnEOugcKJ/rl050JYX4LeUYRlyTsDrrkeFaUzM1Jko28ttErJhwlcHGVwBUPU9shOxfIQ==, tarball: https://npm.pkg.github.com/download/@serendipetey/components/1.0.39/031f9acc7db2472dac9bf4c4eba164acd2dcadf0}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       react: '>=18.0.0'
@@ -2153,7 +2153,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.44.2':
     optional: true
 
-  '@serendipetey/components@1.0.38(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@serendipetey/components@1.0.39(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-slot': 1.2.3(@types/react@18.3.23)(react@18.3.1)
       '@serendipetey/design-tokens': 1.0.8

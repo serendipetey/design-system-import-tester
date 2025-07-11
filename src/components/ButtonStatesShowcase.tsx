@@ -79,7 +79,12 @@ export function ButtonStatesShowcase() {
               <Button variant="cta" disabled className="w-full">
                 CTA Button
               </Button>
-              <Button variant="ghost" disabled className="w-full">
+              <Button
+                variant="outline"
+                appearance="ghost"
+                disabled
+                className="w-full"
+              >
                 Ghost Button
               </Button>
               <Button variant="destructive" disabled className="w-full">
@@ -103,7 +108,12 @@ export function ButtonStatesShowcase() {
               <Button variant="cta" loading className="w-full">
                 CTA Button
               </Button>
-              <Button variant="ghost" loading className="w-full">
+              <Button
+                variant="outline"
+                appearance="ghost"
+                loading
+                className="w-full"
+              >
                 Ghost Button
               </Button>
               <Button variant="destructive" loading className="w-full">
@@ -139,7 +149,8 @@ export function ButtonStatesShowcase() {
                   aria-label="Add"
                 />
                 <Button
-                  variant="ghost"
+                  variant="outline"
+                  appearance="ghost"
                   size="sm"
                   leftIcon={<Download className="w-4 h-4" />}
                   aria-label="Download"
@@ -174,7 +185,8 @@ export function ButtonStatesShowcase() {
                   disabled
                 />
                 <Button
-                  variant="ghost"
+                  variant="outline"
+                  appearance="ghost"
                   size="sm"
                   leftIcon={<Download className="w-4 h-4" />}
                   aria-label="Download"
@@ -211,7 +223,8 @@ export function ButtonStatesShowcase() {
                   loading
                 />
                 <Button
-                  variant="ghost"
+                  variant="outline"
+                  appearance="ghost"
                   size="sm"
                   leftIcon={<Download className="w-4 h-4" />}
                   aria-label="Download"
@@ -297,7 +310,8 @@ export function ButtonStatesShowcase() {
                 Edit Profile
               </Button>
               <Button
-                variant="ghost"
+                variant="outline"
+                appearance="ghost"
                 className="w-full"
                 loading={isLoading("ghost-cancel")}
                 onClick={() => handleButtonClick("ghost-cancel")}
@@ -347,7 +361,8 @@ export function ButtonStatesShowcase() {
               onClick={() => handleButtonClick("icon-add")}
             />
             <Button
-              variant="ghost"
+              variant="outline"
+              appearance="ghost"
               size="md"
               leftIcon={<Download className="w-4 h-4" />}
               aria-label="Download"

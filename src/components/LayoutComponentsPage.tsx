@@ -111,7 +111,8 @@ export function LayoutComponentsPage() {
                     />
                   )}
                   <Button
-                    variant="ghost"
+                    variant="outline"
+                    appearance="ghost"
                     size="sm"
                     onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
                     leftIcon={sidebarCollapsed ? <PanelRight /> : <PanelLeft />}

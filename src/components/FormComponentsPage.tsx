@@ -88,7 +88,9 @@ export function FormComponentsPage() {
             <div className="flex flex-wrap gap-3">
               <Button variant="primary">Primary Button</Button>
               <Button variant="outline">Outline Button</Button>
-              <Button variant="ghost">Ghost Button</Button>
+              <Button variant="outline" appearance="ghost">
+                Ghost Button
+              </Button>
               <Button variant="destructive">Destructive Button</Button>
               <Button variant="cta">CTA Button</Button>
               <Button variant="success">Success Button</Button>
@@ -131,7 +133,11 @@ export function FormComponentsPage() {
               <Button variant="success" leftIcon={<Save className="w-4 h-4" />}>
                 Save Changes
               </Button>
-              <Button variant="ghost" leftIcon={<Edit className="w-4 h-4" />}>
+              <Button
+                variant="outline"
+                appearance="ghost"
+                leftIcon={<Edit className="w-4 h-4" />}
+              >
                 Edit
               </Button>
               <Button
@@ -156,7 +162,7 @@ export function FormComponentsPage() {
               <Button variant="outline" disabled>
                 Disabled
               </Button>
-              <Button variant="ghost" loading disabled>
+              <Button variant="outline" appearance="ghost" loading disabled>
                 Loading Disabled
               </Button>
             </div>

@@ -124,7 +124,7 @@ function OverviewPage() {
                 <Button variant="outline" size="sm">
                   Outline
                 </Button>
-                <Button variant="ghost" size="sm">
+                <Button variant="outline" appearance="ghost" size="sm">
                   Ghost
                 </Button>
               </div>

@@ -146,7 +146,7 @@ export function ComponentValidator() {
               <Button variant="destructive" size="sm">
                 Destructive
               </Button>
-              <Button variant="ghost" size="sm">
+              <Button variant="outline" appearance="ghost" size="sm">
                 Ghost
               </Button>
             </div>

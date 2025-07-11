@@ -55,7 +55,7 @@ export function ButtonStatesShowcase() {
               <Button variant="cta" className="w-full">
                 CTA Button
               </Button>
-              <Button variant="ghost" className="w-full">
+              <Button variant="outline" appearance="ghost" className="w-full">
                 Ghost Button
               </Button>
               <Button variant="destructive" className="w-full">

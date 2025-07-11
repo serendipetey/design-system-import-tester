@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@serendipetey/components':
-        specifier: ^1.0.39
-        version: 1.0.39(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.0.40
+        version: 1.0.40(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@serendipetey/design-tokens':
         specifier: ^1.0.8
         version: 1.0.8
@@ -52,13 +52,13 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0(vite@5.4.19(@types/node@22.16.0))
       '@vitest/ui':
-        specifier: ^1.0.0
+        specifier: ^1.6.1
         version: 1.6.1(vitest@1.6.1)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
       jsdom:
-        specifier: ^23.0.0
+        specifier: ^23.2.0
         version: 23.2.0
       postcss:
         specifier: ^8.5.6
@@ -509,8 +509,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@serendipetey/components@1.0.39':
-    resolution: {integrity: sha512-O3FbPDgSVonp4r5rKXnEOugcKJ/rl050JYX4LeUYRlyTsDrrkeFaUzM1Jko28ttErJhwlcHGVwBUPU9shOxfIQ==, tarball: https://npm.pkg.github.com/download/@serendipetey/components/1.0.39/031f9acc7db2472dac9bf4c4eba164acd2dcadf0}
+  '@serendipetey/components@1.0.40':
+    resolution: {integrity: sha512-USxZsTRvsTvrHIC8Imj7nm9mz/7Fy6hOccLyk1QPzZNB3A2OVjnniR9Z4qcNICWUrs83+0b5wsQBBKkHMIn+qA==, tarball: https://npm.pkg.github.com/download/@serendipetey/components/1.0.40/d47f8badf2922205c7c5dca2728607aed035dce1}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       react: '>=18.0.0'
@@ -2153,7 +2153,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.44.2':
     optional: true
 
-  '@serendipetey/components@1.0.39(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@serendipetey/components@1.0.40(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-slot': 1.2.3(@types/react@18.3.23)(react@18.3.1)
       '@serendipetey/design-tokens': 1.0.8

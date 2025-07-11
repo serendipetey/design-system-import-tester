@@ -1,10 +1,10 @@
 // design-system-import-tester/src/components/ImportValidator.tsx
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 
 interface ImportTest {
   name: string;
-  status: "pending" | "success" | "error" | "warning";
+  status: "loading" | "success" | "error" | "warning";
   message: string;
   details?: string;
 }
@@ -17,26 +17,43 @@ export function ImportValidator() {
     setIsRunning(true);
     const testResults: ImportTest[] = [];
 
-    // Test 1: Design Tokens Package Check
+    // Test 1: Design Tokens Package
     try {
-      testResults.push({
-        name: "Design Tokens Package",
-        status: "success",
-        message: "Design tokens CSS is loaded",
-      });
+      // Check if design tokens CSS is available in the DOM
+      const designTokensLoaded =
+        document.querySelector('link[href*="design-tokens"]') ||
+        document.querySelector("style[data-tokens]") ||
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--color-primary-500"
+        );
+
+      if (designTokensLoaded) {
+        testResults.push({
+          name: "Design Tokens Package",
+          status: "success",
+          message: "Design tokens CSS is loaded",
+        });
+      } else {
+        testResults.push({
+          name: "Design Tokens Package",
+          status: "warning",
+          message: "Design tokens may not be loaded",
+          details: "CSS custom properties not detected",
+        });
+      }
     } catch (error) {
       testResults.push({
         name: "Design Tokens Package",
         status: "error",
-        message: "Failed to validate design tokens",
+        message: "Failed to check design tokens",
         details: error instanceof Error ? error.message : "Unknown error",
       });
     }
 
-    // Test 2: Components Package Import
+    // Test 2: Components Package
     try {
-      const components = await import("@serendipetey/components");
-      const availableComponents = Object.keys(components);
+      const componentsPackage = await import("@serendipetey/components");
+      const availableComponents = Object.keys(componentsPackage);
 
       testResults.push({
         name: "Components Package",
@@ -105,6 +122,40 @@ export function ImportValidator() {
       });
     }
 
+    // Test 5: Form Components (Checkbox, Radio, Select)
+    try {
+      const { Checkbox, RadioGroup, RadioItem, CheckboxGroup, Select } =
+        await import("@serendipetey/components");
+      const formComponents = [
+        { name: "Checkbox", component: Checkbox },
+        { name: "RadioGroup", component: RadioGroup },
+        { name: "RadioItem", component: RadioItem },
+        { name: "CheckboxGroup", component: CheckboxGroup },
+        { name: "Select", component: Select },
+      ];
+
+      const validComponents = formComponents.filter(
+        (c) => typeof c.component === "function"
+      );
+
+      testResults.push({
+        name: "Form Components",
+        status:
+          validComponents.length === formComponents.length
+            ? "success"
+            : "warning",
+        message: `${validComponents.length}/${formComponents.length} form components available`,
+        details: validComponents.map((c) => c.name).join(", "),
+      });
+    } catch (error) {
+      testResults.push({
+        name: "Form Components",
+        status: "error",
+        message: "Failed to import form components",
+        details: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
+
     setTests(testResults);
     setIsRunning(false);
   }, []);
@@ -142,7 +193,7 @@ export function ImportValidator() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {tests.map((test, index) => (
           <div
             key={index}

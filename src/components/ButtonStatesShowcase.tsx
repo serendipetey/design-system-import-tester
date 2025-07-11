@@ -33,13 +33,13 @@ export function ButtonStatesShowcase() {
             Button States Overview
           </h3>
           <p className="text-gray-600">
-            Complete visual reference showing all button variants in their
-            different states
+            Complete visual reference showing all button variants across all
+            states and appearances
           </p>
         </div>
 
-        {/* Three-column layout matching your screenshot */}
-        <div className="grid grid-cols-3 gap-8">
+        {/* Four-column layout: Enabled, Ghost, Disabled, Loading */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Enabled Column */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-gray-700 text-center pb-2 border-b">
@@ -55,11 +55,45 @@ export function ButtonStatesShowcase() {
               <Button variant="cta" className="w-full">
                 CTA Button
               </Button>
-              <Button variant="outline" appearance="ghost" className="w-full">
-                Ghost Button
+              <Button variant="success" className="w-full">
+                Success Button
+              </Button>
+              <Button variant="warning" className="w-full">
+                Warning Button
               </Button>
               <Button variant="destructive" className="w-full">
                 Destructive Button
+              </Button>
+            </div>
+          </div>
+
+          {/* Ghost Column */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-gray-700 text-center pb-2 border-b">
+              Ghost
+            </h4>
+            <div className="space-y-3">
+              <Button variant="primary" appearance="ghost" className="w-full">
+                Primary Ghost
+              </Button>
+              <Button variant="outline" appearance="ghost" className="w-full">
+                Outline Ghost
+              </Button>
+              <Button variant="cta" appearance="ghost" className="w-full">
+                CTA Ghost
+              </Button>
+              <Button variant="success" appearance="ghost" className="w-full">
+                Success Ghost
+              </Button>
+              <Button variant="warning" appearance="ghost" className="w-full">
+                Warning Ghost
+              </Button>
+              <Button
+                variant="destructive"
+                appearance="ghost"
+                className="w-full"
+              >
+                Destructive Ghost
               </Button>
             </div>
           </div>
@@ -79,13 +113,11 @@ export function ButtonStatesShowcase() {
               <Button variant="cta" disabled className="w-full">
                 CTA Button
               </Button>
-              <Button
-                variant="outline"
-                appearance="ghost"
-                disabled
-                className="w-full"
-              >
-                Ghost Button
+              <Button variant="success" disabled className="w-full">
+                Success Button
+              </Button>
+              <Button variant="warning" disabled className="w-full">
+                Warning Button
               </Button>
               <Button variant="destructive" disabled className="w-full">
                 Destructive Button
@@ -108,13 +140,11 @@ export function ButtonStatesShowcase() {
               <Button variant="cta" loading className="w-full">
                 CTA Button
               </Button>
-              <Button
-                variant="outline"
-                appearance="ghost"
-                loading
-                className="w-full"
-              >
-                Ghost Button
+              <Button variant="success" loading className="w-full">
+                Success Button
+              </Button>
+              <Button variant="warning" loading className="w-full">
+                Warning Button
               </Button>
               <Button variant="destructive" loading className="w-full">
                 Destructive Button
@@ -129,7 +159,7 @@ export function ButtonStatesShowcase() {
             Icon-Only Buttons
           </h4>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Enabled Icon-only */}
             <div className="space-y-4">
               <h5 className="text-md font-medium text-gray-700 text-center">
@@ -149,14 +179,37 @@ export function ButtonStatesShowcase() {
                   aria-label="Add"
                 />
                 <Button
+                  variant="destructive"
+                  size="sm"
+                  leftIcon={<Trash2 className="w-4 h-4" />}
+                  aria-label="Delete"
+                />
+              </div>
+            </div>
+
+            {/* Ghost Icon-only */}
+            <div className="space-y-4">
+              <h5 className="text-md font-medium text-gray-700 text-center">
+                Ghost
+              </h5>
+              <div className="flex justify-center gap-3">
+                <Button
+                  variant="primary"
+                  appearance="ghost"
+                  size="sm"
+                  leftIcon={<Edit className="w-4 h-4" />}
+                  aria-label="Edit"
+                />
+                <Button
                   variant="outline"
                   appearance="ghost"
                   size="sm"
-                  leftIcon={<Download className="w-4 h-4" />}
-                  aria-label="Download"
+                  leftIcon={<Plus className="w-4 h-4" />}
+                  aria-label="Add"
                 />
                 <Button
                   variant="destructive"
+                  appearance="ghost"
                   size="sm"
                   leftIcon={<Trash2 className="w-4 h-4" />}
                   aria-label="Delete"
@@ -182,14 +235,6 @@ export function ButtonStatesShowcase() {
                   size="sm"
                   leftIcon={<Plus className="w-4 h-4" />}
                   aria-label="Add"
-                  disabled
-                />
-                <Button
-                  variant="outline"
-                  appearance="ghost"
-                  size="sm"
-                  leftIcon={<Download className="w-4 h-4" />}
-                  aria-label="Download"
                   disabled
                 />
                 <Button
@@ -223,14 +268,6 @@ export function ButtonStatesShowcase() {
                   loading
                 />
                 <Button
-                  variant="outline"
-                  appearance="ghost"
-                  size="sm"
-                  leftIcon={<Download className="w-4 h-4" />}
-                  aria-label="Download"
-                  loading
-                />
-                <Button
                   variant="destructive"
                   size="sm"
                   leftIcon={<Trash2 className="w-4 h-4" />}
@@ -243,19 +280,19 @@ export function ButtonStatesShowcase() {
         </div>
       </div>
 
-      {/* Section 2: Interactive Loading Demo */}
+      {/* Section 2: Interactive Buttons Demo */}
       <div className="bg-white rounded-lg shadow-sm border p-8">
         <div className="mb-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-3">
             Interactive Loading Demo
           </h3>
           <p className="text-gray-600 mb-4">
-            Click any button below to see it transition to loading state for 3
-            seconds
+            Click buttons to trigger loading states and test real interaction
+            behavior
           </p>
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-blue-600 bg-blue-50 px-3 py-2 rounded-md">
-              💡 <strong>Try it:</strong> Click multiple buttons to see
+          <div className="flex items-center gap-4 text-sm text-gray-500">
+            <div>
+              <strong>Try it:</strong> Click multiple buttons to see
               simultaneous loading states
             </div>
             <Button
@@ -316,7 +353,7 @@ export function ButtonStatesShowcase() {
                 loading={isLoading("ghost-cancel")}
                 onClick={() => handleButtonClick("ghost-cancel")}
               >
-                Cancel
+                Cancel Action
               </Button>
             </div>
           </div>
@@ -332,51 +369,18 @@ export function ButtonStatesShowcase() {
                 onClick={() => handleButtonClick("destructive-delete")}
                 leftIcon={<Trash2 className="w-4 h-4" />}
               >
-                Delete Account
+                Delete Item
+              </Button>
+              <Button
+                variant="destructive"
+                appearance="ghost"
+                className="w-full"
+                loading={isLoading("destructive-ghost-remove")}
+                onClick={() => handleButtonClick("destructive-ghost-remove")}
+              >
+                Remove Access
               </Button>
             </div>
-          </div>
-        </div>
-
-        {/* Icon-only interactive section */}
-        <div className="mt-8 pt-6 border-t">
-          <h4 className="font-medium text-gray-700 mb-4">
-            Interactive Icon-Only Buttons
-          </h4>
-          <div className="flex justify-center gap-4">
-            <Button
-              variant="primary"
-              size="md"
-              leftIcon={<Edit className="w-4 h-4" />}
-              aria-label="Edit item"
-              loading={isLoading("icon-edit")}
-              onClick={() => handleButtonClick("icon-edit")}
-            />
-            <Button
-              variant="outline"
-              size="md"
-              leftIcon={<Plus className="w-4 h-4" />}
-              aria-label="Add item"
-              loading={isLoading("icon-add")}
-              onClick={() => handleButtonClick("icon-add")}
-            />
-            <Button
-              variant="outline"
-              appearance="ghost"
-              size="md"
-              leftIcon={<Download className="w-4 h-4" />}
-              aria-label="Download"
-              loading={isLoading("icon-download")}
-              onClick={() => handleButtonClick("icon-download")}
-            />
-            <Button
-              variant="destructive"
-              size="md"
-              leftIcon={<Trash2 className="w-4 h-4" />}
-              aria-label="Delete item"
-              loading={isLoading("icon-delete")}
-              onClick={() => handleButtonClick("icon-delete")}
-            />
           </div>
         </div>
       </div>

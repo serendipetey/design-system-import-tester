@@ -24,6 +24,7 @@ import {
   Palette,
   Settings,
   Layers,
+  Square, // For buttons icon
 } from "lucide-react";
 
 interface ComponentTestLayoutProps {
@@ -87,6 +88,13 @@ export function ComponentTestLayout({
               {/* Component Testing Sections */}
               <SidebarMenuSection title="Core Components" icon={Layers}>
                 <div className="space-y-1">
+                  <SidebarMenuItem
+                    icon={Square}
+                    active={currentPage === "buttons"}
+                    onClick={() => handleNavigation("buttons")}
+                  >
+                    Buttons & Actions
+                  </SidebarMenuItem>
                   <SidebarMenuItem
                     icon={MousePointer}
                     active={currentPage === "form"}

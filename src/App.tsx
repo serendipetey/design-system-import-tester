@@ -7,6 +7,7 @@ import { FormComponentsPage } from "./components/FormComponentsPage";
 import { DataComponentsPage } from "./components/DataComponentsPage";
 import { NavigationComponentsPage } from "./components/NavigationComponentsPage";
 import { LayoutComponentsPage } from "./components/LayoutComponentsPage";
+import { ButtonDemoPage } from "./components/ButtonDemoPage";
 import "./index.css";
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
     switch (currentPage) {
       case "overview":
         return <OverviewPage />;
+      case "buttons":
+        return <ButtonDemoPage />;
       case "form":
         return <FormComponentsPage />;
       case "data":
